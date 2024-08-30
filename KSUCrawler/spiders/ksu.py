@@ -26,9 +26,8 @@ class KSUSpider(CrawlSpider):
     )
 
     custom_settings = {
-        'CLOSESPIDER_PAGECOUNT': 5,
-        'CLOSESPIDER_ITEMCOUNT': 5,
-        'DEPTH_PRIORITY': -1,
+        'CLOSESPIDER_PAGECOUNT': 1000,
+        'DEPTH_PRIORITY': 1,
         'SCHEDULER_DISK_QUEUE': 'scrapy.squeues.PickleFifoDiskQueue',
         'SCHEDULER_MEMORY_QUEUE': 'scrapy.squeues.FifoMemoryQueue',
     }
