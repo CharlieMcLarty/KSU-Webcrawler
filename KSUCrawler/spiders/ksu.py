@@ -9,8 +9,8 @@ class KSUSpider(CrawlSpider):
     allowed_domains = ["kennesaw.edu"]
     start_urls = [
         "https://www.kennesaw.edu",
-        "https://www.kennesaw.edu/parking/index.php",
-        "https://bookstore.kennesaw.edu/home"
+        "https://www.kennesaw.edu/parking/",
+        "https://www.kennesaw.edu/dining/"
     ]
 
     rules = (
@@ -39,5 +39,5 @@ class KSUSpider(CrawlSpider):
         item['pageid'] = md5(item['url'].encode('utf-8')).hexdigest()
         item['body'] = response.css("body").get()
         item['title'] = response.css("title::text").get()
-        item['email'] = response.css("body").re(r'[\w\.-]+@[\w\.]+')
+        item['email'] = response.css("body").re(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
         yield item
