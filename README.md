@@ -6,6 +6,8 @@ A web crawler for scraping info from the KSU domain pages
 
 ```pip install nltk```
 
+```pip install matplotlib```
+
 ## Run
 ```scrapy crawl ksu -o output.json```
 

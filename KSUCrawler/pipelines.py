@@ -1,4 +1,6 @@
+import re
 from bs4 import BeautifulSoup
+from string import punctuation
 
 
 class BodyTextPipeline:
@@ -10,8 +12,14 @@ class BodyTextPipeline:
             for tag in soup(["script", "style", "a", "img"]):
                 tag.extract()
 
-            text = soup.get_text(separator=' ')
+            text = soup.get_text(separator=' | ',strip=True)
             words = text.split()
-            item['body'] = words
+            clean_words = []
+            word_pattern = re.compile(r'^[a-zA-Z]+$')
+            for word in words:
+                clean_word = word.strip(punctuation)
+                if word_pattern.match(clean_word):
+                    clean_words.append(clean_word)
+            item['body'] = clean_words
 
         return item
