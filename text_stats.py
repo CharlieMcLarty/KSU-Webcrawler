@@ -1,5 +1,7 @@
 import json
 from collections import Counter
+import nltk
+from nltk.corpus import stopwords
 
 with open('output.json', encoding='utf8') as f:
     data = json.load(f)
@@ -33,3 +35,6 @@ print(f"\n{"rank":<6}  {"term":<12}  {"freq.":<7}  {"perc.":<7}")
 print("-" * 36)
 for i, (word, count) in enumerate(wordCount.most_common(30), start=1):
     print(f"{i:<6}  {word:<12}  {count:<7}  {count / totalWords:<7.3f}")
+
+stops = set(stopwords.words('english'))
+print(stops)
